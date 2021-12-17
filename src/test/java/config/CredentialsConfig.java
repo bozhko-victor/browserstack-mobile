@@ -7,6 +7,7 @@ public interface CredentialsConfig extends Config {
     String user();
     String key();
     String browserstackUrl();
+    String appURL();
     String login();
     String password();
 }
