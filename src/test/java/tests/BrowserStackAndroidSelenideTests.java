@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static io.qameta.allure.Allure.step;
 
 @Tag("selenide_android")
 public class BrowserStackAndroidSelenideTests extends TestBase {
@@ -15,11 +16,15 @@ public class BrowserStackAndroidSelenideTests extends TestBase {
         @Test
         @DisplayName("Successful search")
         void searchTest() {
-            $(MobileBy.AccessibilityId("Search Wikipedia")).click();
-            $(MobileBy.id("org.wikipedia.alpha:id/search_src_text")).setValue("Stack Overflow");
-            $$(MobileBy.id("org.wikipedia.alpha:id/page_list_item_container"))
-                    .shouldHave(sizeGreaterThan(0));
+            step("Type search", () -> {
+                $(MobileBy.AccessibilityId("Search Wikipedia")).click();
+                $(MobileBy.id("org.wikipedia.alpha:id/search_src_text")).val("BrowserStack");
+            });
+            step("Verify content found", () ->
+                    $$(MobileBy.id("org.wikipedia.alpha:id/page_list_item_container"))
+                            .shouldHave(sizeGreaterThan(0)));
 
     }
+
 
 }
