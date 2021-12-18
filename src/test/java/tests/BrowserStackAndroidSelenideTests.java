@@ -27,8 +27,8 @@ public class BrowserStackAndroidSelenideTests extends TestBase {
     }
 
     @Test
+    @DisplayName("Text translation")
     void changeTextLanguageTest() {
-
         step("Type search", () -> {
             $(MobileBy.AccessibilityId("Search Wikipedia")).click();
             $(MobileBy.id("org.wikipedia.alpha:id/search_src_text")).setValue("Michael Jackson");
@@ -49,7 +49,7 @@ public class BrowserStackAndroidSelenideTests extends TestBase {
                     .click();
         });
 
-        step("Check that language change", () ->
+        step("Check that the text has changed to Russian", () ->
                 $(MobileBy.id("org.wikipedia.alpha:id/view_page_title_text")).shouldHave(text("Джексон, Майкл")));
     }
 
